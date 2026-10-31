@@ -1,0 +1,7 @@
+# Screenshots Directory
+The screenshots are organized in the following order:
+├── native-http.png (Native HTTP Server test on port 3000)
+├── home.png (Express Server GET / Welcome route)
+├── about.png (Express Server GET /about JSON profile)
+├── time.png (Express Server GET /time Current date and time)
+└── not-found.png (Express Server GET /unknown 404 handler)

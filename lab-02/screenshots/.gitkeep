@@ -1,0 +1,10 @@
+﻿# Lab 2 Screenshots Directory
+Place your captured screenshots for Lab 2 in this folder:
+1. database-records.png   (SQLite CLI: SELECT * FROM book; showing initial 10 records)
+2. get-all-books.png      (Postman / Browser: GET /books/ - HTTP 200)
+3. get-single-book.png    (Postman: GET /books/1/ - HTTP 200)
+4. post-book.png          (Postman: POST /books/ with JSON body - HTTP 201)
+5. put-book.png           (Postman: PUT /books/1/ with JSON body - HTTP 200)
+6. delete-book.png        (Postman: DELETE /books/10/ - HTTP 200)
+7. not-found-book.png     (Postman: GET /books/999/ - HTTP 404)
+

@@ -1,0 +1,29 @@
+﻿{
+  "name": "lab-02",
+  "version": "1.0.0",
+  "description": "Lab 2: SQLite Database and CRUD Routes - Backend Development Fundamentals",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "sqlite",
+    "sqlite3",
+    "crud",
+    "lab-02"
+  ],
+  "author": "Bogam Hari Prasad",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.3.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

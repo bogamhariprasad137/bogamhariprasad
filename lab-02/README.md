@@ -264,7 +264,7 @@ After performing API requests, verify changes directly in the database:
 
 ## 13. Deployment Information & SQLite Cloud Persistence Limitations
 
-- **Deployment Status:** `Not Deployed / Pending Local Evaluation`
+- **Deployment Status:** https://lab-02-67zg.onrender.com
 
 ### Important Note on SQLite Persistence on Cloud Platforms:
 SQLite is a serverless, embedded database engine that stores all data inside a single local file (`books.db`). Most cloud application platforms (such as Render Free Tier, Heroku, or Vercel) utilize **ephemeral filesystems** inside stateless virtual containers.

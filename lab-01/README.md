@@ -2,7 +2,7 @@
 
 **Course:** Backend Development Fundamentals  
 **Academic Year:** II Year, Term II  
-**Institution:** Aurora  
+**Institution:** Aurora Deemed to be University  
 **Faculty:** Mr Sai Siva Teja Chintakrindi  
 
 ---

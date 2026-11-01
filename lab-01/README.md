@@ -15,7 +15,7 @@
 ---
 
 ## 2. Deployment URL
-- **Live Deployment URL:** `Pending Deployment` *(Will be updated after cloud deployment)*
+- **Live Deployment URL:** [https://bogamhariprasad.onrender.com](https://bogamhariprasad.onrender.com)
 
 ---
 

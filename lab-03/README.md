@@ -13,6 +13,8 @@
 - **Registration Number:** 252U1R1036
 - **Section:** CSE-2A
 - **Course:** Backend Development Fundamentals
+- **Academic Year:** II Year, Term II
+- **Institution:** Aurora Deemed to be University
 - **Faculty:** Mr Sai Siva Teja Chintakrindi
 - **Repository:** [https://github.com/bogamhariprasad137/bogamhariprasad](https://github.com/bogamhariprasad137/bogamhariprasad)
 
@@ -40,6 +42,35 @@
 - **SQLite3** (v6.0.1) & **sqlite** (v5.1.1) - Lightweight disk-based SQL database and promise-based client wrapper
 - **Nodemon** (v3.1.14) - Development utility for automatic server restarts
 - **Thunder Client** - Visual Studio Code REST API client for endpoint testing
+
+---
+
+## 📁 Project Structure
+
+```text
+lab-03/
+├── server.js              # Express application with routes, query handlers & validation
+├── books.db               # SQLite database file containing the 'book' table and records
+├── seed.sql               # Database creation and seed records script
+├── package.json           # Project manifest, dependencies, and cross-platform build scripts
+├── package-lock.json      # Dependency lockfile
+├── README.md              # Full documentation, viva answers, and test evidence
+├── .gitignore             # Excludes node_modules, .env, and logs
+├── test.js                # Automated test verification suite
+└── screenshots/           # Thunder Client test execution screenshots
+    ├── .gitkeep
+    ├── get-all-books.png
+    ├── search-books.png
+    ├── sort-books.png
+    ├── pagination.png
+    ├── price-filter.png
+    ├── combined-filters.png
+    ├── invalid-query.png
+    ├── post-book.png
+    ├── put-book.png
+    ├── delete-book.png
+    └── not-found.png
+```
 
 ---
 
@@ -113,7 +144,7 @@ Express server is running on http://localhost:3000/
 
 - **Partial title search:**
   ```http
-  GET http://localhost:3000/books/?search_q=the
+  GET http://localhost:3000/books/?search_q=node
   ```
 
 - **Sort descending by price:**
@@ -140,18 +171,18 @@ Express server is running on http://localhost:3000/
 ```json
 [
   {
-    "id": 3,
-    "title": "The Great Gatsby",
-    "author": "F. Scott Fitzgerald",
-    "price": 250,
-    "pages": 180
+    "id": 1,
+    "title": "Updated Node.js Book",
+    "author": "TOJI",
+    "price": 500,
+    "pages": 350
   },
   {
-    "id": 4,
-    "title": "Pride and Prejudice",
-    "author": "Jane Austen",
-    "price": 350,
-    "pages": 279
+    "id": 2,
+    "title": "1984",
+    "author": "George Orwell",
+    "price": 299,
+    "pages": 328
   }
 ]
 ```
@@ -160,7 +191,7 @@ Express server is running on http://localhost:3000/
 - Invalid column:
   ```json
   {
-    "message": "Invalid order_by column 'rating'. Allowed columns: id, title, author, price, pages"
+    "message": "Invalid order_by column 'invalid_col'. Allowed columns: id, title, author, price, pages"
   }
   ```
 - Invalid price range:
@@ -220,9 +251,9 @@ POST http://localhost:3000/books/
 Content-Type: application/json
 
 {
-  "title": "System Design Interview",
-  "author": "Alex Xu",
-  "price": 650,
+  "title": "Learning Node.js",
+  "author": "Hari Prasad",
+  "price": 450,
   "pages": 300
 }
 ```
@@ -231,7 +262,7 @@ Content-Type: application/json
 ```json
 {
   "message": "Book created successfully",
-  "bookId": 13
+  "bookId": 14
 }
 ```
 
@@ -248,12 +279,14 @@ Content-Type: application/json
 
 #### Example Request:
 ```http
-PUT http://localhost:3000/books/2/
+PUT http://localhost:3000/books/1/
 Content-Type: application/json
 
 {
-  "price": 320,
-  "pages": 340
+  "title": "Updated Node.js Book",
+  "author": "TOJI",
+  "price": 500,
+  "pages": 350
 }
 ```
 
@@ -262,11 +295,11 @@ Content-Type: application/json
 {
   "message": "Book updated successfully",
   "book": {
-    "id": 2,
-    "title": "1984",
-    "author": "George Orwell",
-    "price": 320,
-    "pages": 340
+    "id": 1,
+    "title": "Updated Node.js Book",
+    "author": "TOJI",
+    "price": 500,
+    "pages": 350
   }
 }
 ```
@@ -284,7 +317,7 @@ Content-Type: application/json
 
 #### Example Request:
 ```http
-DELETE http://localhost:3000/books/13/
+DELETE http://localhost:3000/books/14/
 ```
 
 #### Response (`200 OK`):
@@ -345,7 +378,7 @@ In this lab, database security is strictly enforced by applying two primary defe
 ---
 
 ### 2. Wrong Import Path / Module Not Found (`Cannot find module`)
-- **Cause:** Incorrect relative path when importing local modules (e.g., `require('./book.db')` instead of proper path resolution) or forgetting to run `npm install` after cloning a project with third-party dependencies.
+- **Cause:** Incorrect relative path when importing local modules or forgetting to run `npm install` after cloning a project with third-party dependencies.
 - **Diagnosis:** Check the stack trace showing `Error: Cannot find module 'xyz'`.
 - **Solution:**
   - Verify `package.json` contains the required package in `dependencies`.
@@ -375,31 +408,71 @@ In this lab, database security is strictly enforced by applying two primary defe
 
 ---
 
-## 📋 Thunder Client Testing Checklist & Screenshot References
+## 📷 Test Execution Evidence & Screenshots
 
-Save your actual test execution screenshots into `screenshots/`:
+All 11 Thunder Client test requests and response screenshots are captured and embedded below from the [`screenshots/`](screenshots/) directory:
 
-| No. | Test Case | Endpoint / Query | Expected Status | Screenshot Path |
+### 1. Get All Books (`GET /books/`)
+Retrieves all book records from the database with default ordering.
+![Get All Books](screenshots/get-all-books.png)
+
+### 2. Search Books by Title (`GET /books/?search_q=...`)
+Performs partial search using parameterized SQLite `LIKE`.
+![Search Books](screenshots/search-books.png)
+
+### 3. Sort Books (`GET /books/?order_by=...&order=...`)
+Sorts books by whitelisted column and sort direction.
+![Sort Books](screenshots/sort-books.png)
+
+### 4. Pagination (`GET /books/?limit=...&offset=...`)
+Demonstrates pagination using limit and offset.
+![Pagination](screenshots/pagination.png)
+
+### 5. Price Filter (`GET /books/?min_price=...&max_price=...`)
+Filters books matching minimum and maximum price boundaries.
+![Price Filter](screenshots/price-filter.png)
+
+### 6. Combined Query Filters
+Simultaneous search, price filtering, sorting, and pagination in a single query.
+![Combined Filters](screenshots/combined-filters.png)
+
+### 7. Invalid Query Parameter Validation (`HTTP 400 Bad Request`)
+Rejection of invalid sorting column or out-of-range query parameter.
+![Invalid Query Parameter](screenshots/invalid-query.png)
+
+### 8. Create Book (`POST /books/` -> `HTTP 201 Created`)
+Adds a new book record with payload validation.
+![Create Book](screenshots/post-book.png)
+
+### 9. Update Book (`PUT /books/:bookId/` -> `HTTP 200 OK`)
+Updates an existing book record with modified fields.
+![Update Book](screenshots/put-book.png)
+
+### 10. Delete Book (`DELETE /books/:bookId/` -> `HTTP 200 OK`)
+Removes a book record by its ID.
+![Delete Book](screenshots/delete-book.png)
+
+### 11. Resource Not Found (`HTTP 404 Not Found`)
+Handles requests for nonexistent book IDs or invalid routes.
+![Resource Not Found](screenshots/not-found.png)
+
+---
+
+## 📋 Thunder Client Testing Summary Table
+
+| No. | Test Case | Endpoint / Query | Expected Status | Screenshot Reference |
 |---|---|---|---|---|
-| 1 | Get All Books | `GET /books/` | `200 OK` | `screenshots/get-all-books.png` |
-| 2 | Partial Title Search | `GET /books/?search_q=great` | `200 OK` | `screenshots/search-title.png` |
-| 3 | Sort Ascending by Price | `GET /books/?order_by=price&order=ASC` | `200 OK` | `screenshots/sort-asc.png` |
-| 4 | Sort Descending by Pages | `GET /books/?order_by=pages&order=DESC` | `200 OK` | `screenshots/sort-desc.png` |
-| 5 | Pagination (Limit & Offset) | `GET /books/?limit=3&offset=3` | `200 OK` | `screenshots/pagination.png` |
-| 6 | Filter by Min Price | `GET /books/?min_price=400` | `200 OK` | `screenshots/min-price.png` |
-| 7 | Filter by Max Price | `GET /books/?max_price=300` | `200 OK` | `screenshots/max-price.png` |
-| 8 | Combined Price Range | `GET /books/?min_price=300&max_price=500` | `200 OK` | `screenshots/price-range.png` |
-| 9 | Invalid Query Parameter | `GET /books/?order_by=invalid_col` | `400 Bad Request` | `screenshots/invalid-query.png` |
-| 10 | Create Valid Book | `POST /books/` | `201 Created` | `screenshots/post-valid-book.png` |
-| 11 | Create Book Missing Title | `POST /books/` (no title) | `400 Bad Request` | `screenshots/post-missing-title.png` |
-| 12 | Create Book Missing Author | `POST /books/` (no author) | `400 Bad Request` | `screenshots/post-missing-author.png` |
-| 13 | Create Book Invalid Price | `POST /books/` (price: -50) | `400 Bad Request` | `screenshots/post-invalid-price.png` |
-| 14 | Get Existing Book | `GET /books/1/` | `200 OK` | `screenshots/get-single-book.png` |
-| 15 | Get Nonexistent Book | `GET /books/999/` | `404 Not Found` | `screenshots/get-nonexistent-book.png` |
-| 16 | Update Existing Book | `PUT /books/1/` | `200 OK` | `screenshots/put-existing-book.png` |
-| 17 | Update Nonexistent Book | `PUT /books/999/` | `404 Not Found` | `screenshots/put-nonexistent-book.png` |
-| 18 | Delete Existing Book | `DELETE /books/12/` | `200 OK` | `screenshots/delete-existing-book.png` |
-| 19 | Delete Nonexistent Book | `DELETE /books/999/` | `404 Not Found` | `screenshots/delete-nonexistent-book.png` |
+| 1 | Get All Books | `GET /books/` | `200 OK` | [`screenshots/get-all-books.png`](screenshots/get-all-books.png) |
+| 2 | Partial Title Search | `GET /books/?search_q=...` | `200 OK` | [`screenshots/search-books.png`](screenshots/search-books.png) |
+| 3 | Sort Books | `GET /books/?order_by=price&order=DESC` | `200 OK` | [`screenshots/sort-books.png`](screenshots/sort-books.png) |
+| 4 | Pagination (Limit & Offset) | `GET /books/?limit=3&offset=3` | `200 OK` | [`screenshots/pagination.png`](screenshots/pagination.png) |
+| 5 | Filter by Price Range | `GET /books/?min_price=300&max_price=500` | `200 OK` | [`screenshots/price-filter.png`](screenshots/price-filter.png) |
+| 6 | Combined Filters | `GET /books/?search_q=...&min_price=...` | `200 OK` | [`screenshots/combined-filters.png`](screenshots/combined-filters.png) |
+| 7 | Invalid Query Parameter | `GET /books/?order_by=invalid_col` | `400 Bad Request` | [`screenshots/invalid-query.png`](screenshots/invalid-query.png) |
+| 8 | Create Book | `POST /books/` | `201 Created` | [`screenshots/post-book.png`](screenshots/post-book.png) |
+| 9 | Update Book | `PUT /books/1/` | `200 OK` | [`screenshots/put-book.png`](screenshots/put-book.png) |
+| 10 | Delete Book | `DELETE /books/:bookId/` | `200 OK` | [`screenshots/delete-book.png`](screenshots/delete-book.png) |
+| 11 | Resource Not Found | `GET /books/999/` | `404 Not Found` | [`screenshots/not-found.png`](screenshots/not-found.png) |
 
 ---
 
@@ -409,7 +482,7 @@ Save your actual test execution screenshots into `screenshots/`:
 - [x] Reused Lab 2 Express + SQLite architecture with CommonJS.
 - [x] Initial database records preserved in `lab-03/books.db`.
 - [x] All 5 CRUD routes implemented and verified.
-- [x] All 7 query parameters (`search_q`, `order_by`, `order`, `limit`, `offset`, `min_price`, `max_price`) implemented with parameterized safety.
+- [x] All query parameters (`search_q`, `order_by`, `order`, `limit`, `offset`, `min_price`, `max_price`) implemented with parameterized safety.
 - [x] Robust server-side validation for `POST`, `PUT`, `DELETE`, and query parameters.
 - [x] Debugging exercise documented.
-- [x] Real Thunder Client testing checklist prepared.
+- [x] All 11 Thunder Client test screenshots embedded with exact filenames.
